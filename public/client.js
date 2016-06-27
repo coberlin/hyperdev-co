@@ -6,16 +6,16 @@
 
 $(function() {
   console.log('hello world :o');
-  
+
   $.get('/dreams', function(dreams) {
     dreams.forEach(function(dream) {
       $('<li></li>').text(dream).appendTo('ul#dreams');
     });
   });
 
-  $('form').submit(function(event) {
+  $('form#dream_f').submit(function(event) {
     event.preventDefault();
-    dream = $('input').val();
+    dream = $('form#dream_f :input').val();
     $.post('/dreams?' + $.param({dream: dream}), function() {
       $('<li></li>').text(dream).appendTo('ul#dreams');
       $('input').val('');
